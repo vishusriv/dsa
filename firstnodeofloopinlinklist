@@ -1,0 +1,73 @@
+
+
+typedef struct ll {
+    int d;
+    struct ll *n;
+} ll;
+
+ll* findfirstloop(ll **s)
+{
+    ll *f, *s, *n;
+    f = *s;
+    s = *s;
+    f = f->n;
+    while(s && f) {
+          if (f == s) {
+              n = s;
+              while(f!=n) {
+                f = f->n;
+                n = n->n;
+              }
+              return n;
+          } else {
+            if (f->n)
+                f = f->n->n;
+                s = s->n;
+          }
+    }
+    return NULL;
+}
+void printll (ll **s)
+{
+    ll *t = *s;
+    while(t) {
+          printf("->%d", t->d);
+          t = t->n;
+    }
+}
+
+// add a node in ll
+void add( ll **s, int d)
+{
+    ll *n = malloc(sizeof(ll));
+    n->d = d;
+    if (*s == NULL) {
+        *s = n;
+    } else {
+        t->n = *s;
+        *s = n;
+    }
+    return;
+}
+
+int main()
+{
+    ll *s;
+    // create the ll first
+    add(&s, 1);
+    add(&s, 4);
+    add(&s, 8);
+    add(&s, 3);
+
+    printll(&s);
+
+    // create a loop
+    s->n->n->n = s;
+    if (isloop(&s)) {
+        printf("\n Loop");
+    } else {
+        printf("\n No loop");
+    }
+    printf("0x%x", s->n->n->n);
+
+}
