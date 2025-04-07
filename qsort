@@ -1,6 +1,11 @@
 
 // A simple quick sort algorithm
 
+// Note for below function: j is a iterator which iterates from left to
+// right, exclusing index "r". i tracks index of element which has a 
+// value < pivot. Therefore once this loop is terminated, we place pivot
+// to index i + 1 (pivot we chosen was the rightmoset element). 
+
 int part(int a[], int l, int r)
 {
     int pi, i, j;
