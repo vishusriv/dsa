@@ -1,6 +1,29 @@
 
 // A simple quick sort algorithm
 
+int part(int a[], int l, int r)
+{
+    int pi, i, j;
+    pi = a[r];
+    i = l - 1;
+    for (j = l; j <= r - 1; j++) {
+        if (a[l] < pi) {
+            i++;
+            swap(&a[i], a[j]);    
+        }
+    }
+    swap(&a[i+1], &a[r])
+    return (i+1);    
+}
+int qsort(int a[], int l, int r)
+{
+    if (l < r) {
+        int pi = part(a, l, r);
+        qsort(a, l, pi - 1);
+        qsort(a, r, pi + 1);
+    }
+    return 0;
+}
 
 int main()
 {
