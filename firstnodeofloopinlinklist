@@ -7,22 +7,19 @@ typedef struct ll {
 
 ll* findfirstloop(ll **s)
 {
-    ll *f, *s, *n;
-    f = *s;
-    s = *s;
-    f = f->n;
-    while(s && f) {
-          if (f == s) {
-              n = s;
-              while(f!=n) {
-                f = f->n;
-                n = n->n;
+    ll *fast, *slow;
+    fast = *s;
+    slow = *s
+    while(fast && fast->n) {
+          slow = slow->n;
+          fast = fast->n->n;
+          if (fast == slow) {
+              slow = *s;
+              while (slow != fast) {
+                    slow = slow->n;
+                    fast = fast->n;    
               }
-              return n;
-          } else {
-            if (f->n)
-                f = f->n->n;
-                s = s->n;
+              return slow;
           }
     }
     return NULL;
