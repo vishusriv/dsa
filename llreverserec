@@ -1,19 +1,25 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 typedef struct ll {
     int d;
     struct ll* n;
-}
+} ll;
 
 void reverse(ll **s)
 {
     ll *f, *r;
-    f = *s
+    f = *s;
     if (!f)
         return;
     r = f->n;
+    if (!r)
+       return;    
     reverse(&r);
     // fix pointers
     f->n->n = f;
     f->n = NULL;
+    *s = r;
     return;
 }
 
@@ -30,7 +36,7 @@ void printll( ll **s)
 void add(ll **s, int d)
 {
     ll *n = malloc(sizeof(ll));
-    if (!ll)
+    if (!n)
         return;
     n->d = d;
     if (*s) {
