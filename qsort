@@ -1,0 +1,16 @@
+
+// A simple quick sort algorithm
+
+
+int main()
+{
+    int n;
+    int a[]= {1,2,0,2,1,0,2,0,1};
+    n  = sizeof (a) / sizeof(a[0]);
+    qsort(a, 0, n - 1); // a, left, right
+    for( int i = 0; i < n; i++) {
+       printf("\n %d", a[i]); 
+    }
+    return 0;
+}
+
