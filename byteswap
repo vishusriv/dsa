@@ -1,0 +1,31 @@
+#include <stdio.h>
+unsigned int swapbyte(unsigned int x)
+{
+    
+    unsigned int left, right, shift, lmask, rmask;
+    unsigned int r = 0;
+    unsigned int bytes = sizeof(x);
+    lmask = ~((unsigned )~0 << 8);
+    rmask = ~((unsigned )~0 >> 8);
+  
+ 
+    for (unsigned int i = 1; i <= bytes / 2; i++) {
+        left = x & lmask;
+        right = x & rmask;
+        lmask = lmask << 8;
+        rmask = rmask >> 8;
+        shift = 8 * sizeof(x) - 16 * i + 8;
+        r |= (left << shift | right >> shift);
+    }
+
+    return r;
+}
+
+
+int main()
+{
+    unsigned int a = 0xaabbccdd;
+    printf("0x%x",  a);
+    printf("\n0x%x",swapbyte(a));
+    // result should be "0xddccbbaa"
+}
