@@ -1,0 +1,16 @@
+int lengthOfLIS(int* nums, int numsSize) {
+    int l, s, e;
+    s = 0, l = 0, e = 0;
+    for (int i = 1; i < numSize; i++) {
+         if (nums[i] < nums[i-1]) {
+            e = i - 1;
+            if (e - s + 1 > l)
+                l = e - s + 1;
+             
+         } else {
+            s = i;
+            l = e - s + 1;
+         }
+    }
+    return l;
+}
