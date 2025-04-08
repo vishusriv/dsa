@@ -8,7 +8,9 @@ unsigned int swapbyte(unsigned int x)
     lmask = ~((unsigned )~0 << 8);
     rmask = ~((unsigned )~0 >> 8);
     // we start with mask 0xff0000.... & 0xff 
- 
+    // since at each iteration, we place two bytes
+    // at right place, we only need to iterate half 
+    // of the bytes in i/p data
     for (unsigned int i = 1; i <= bytes / 2; i++) {
         left = x & lmask;
         right = x & rmask;
