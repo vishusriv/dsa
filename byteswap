@@ -7,14 +7,18 @@ unsigned int swapbyte(unsigned int x)
     unsigned int bytes = sizeof(x);
     lmask = ~((unsigned )~0 << 8);
     rmask = ~((unsigned )~0 >> 8);
-  
+    // we start with mask 0xff0000.... & 0xff 
  
     for (unsigned int i = 1; i <= bytes / 2; i++) {
         left = x & lmask;
         right = x & rmask;
+        // then update the mask to point to next bytes
         lmask = lmask << 8;
         rmask = rmask >> 8;
         shift = 8 * sizeof(x) - 16 * i + 8;
+        // at each iteration we calculate how much
+        //  shift is needed of the extracted bytes
+        // to place it at right place in o/p
         r |= (left << shift | right >> shift);
     }
 
