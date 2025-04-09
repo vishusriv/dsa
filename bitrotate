@@ -1,0 +1,37 @@
+#include <stdio.h>
+// rotates x either to left or to right  count number of times
+unsigned int rotate(unsigned int x, unsigned l, int count)
+{
+    unsigned int shift, m;
+    while (count--) {
+        if (!l) {
+             // calculate shift needed 
+             shift = 8 * sizeof(int) - 1;
+             // get the lsbit and move it to MSB position
+             m = (x & 0x1) << shift;
+             // make space for incomming bit
+             x = x >> 1;
+             // put extracted bit at right place
+             x = x | m;
+        } else {
+            shift = 8 * sizeof(int) - 1;
+            // get the msbit
+            m = x & (1 << shift);
+            // move the extracted bit to lsbit position
+            m = m >> shift;
+            // make space for lsbit
+            x = x  << 1;
+            // put it at right place
+            x = x | m;
+        }
+    }
+    // return result
+    return x;
+}
+
+int main()
+{
+    unsigned int a = 0xaabbccdd;
+    printf("0x%x",  a);
+    printf("\n0x%x",rotate(a, 1, 8));
+}
