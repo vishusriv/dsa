@@ -1,16 +1,61 @@
+// longest increasing subsequence Problem:
+
+/*
+Given an integer array nums, return the length of the longest strictly increasing subsequence.
+
+ 
+
+Example 1:
+
+Input: nums = [10,9,2,5,3,7,101,18]
+Output: 4
+Explanation: The longest increasing subsequence is [2,3,7,101], therefore the length is 4.
+Example 2:
+
+Input: nums = [0,1,0,3,2,3]
+Output: 4
+Example 3:
+
+Input: nums = [7,7,7,7,7,7,7]
+Output: 1
+*/
+
+// Solution:
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX(a, b) ((a > b) ? a : b)
 int lengthOfLIS(int* nums, int numsSize) {
-    int l, s, e;
-    s = 0, l = 0, e = 0;
-    for (int i = 1; i < numSize; i++) {
-         if (nums[i] < nums[i-1]) {
-            e = i - 1;
-            if (e - s + 1 > l)
-                l = e - s + 1;
-             
-         } else {
-            s = i;
-            l = e - s + 1;
-         }
+    int max = 0;
+    // allocate a array to hold the result
+    int *r = malloc(sizeof(int) * numsSize);
+    for (int i =0; i < numsSize; i++)
+        r[i] = 1;
+    if (!r)
+        return 0;
+    for (int i = 0; i < numsSize; i++) {
+        for (int j = 0; j < i; j++) {
+            if (nums[j] < nums[i]) {
+                r[i] = MAX(r[i], 1 + r[j]);
+            }
+
+        }
     }
-    return l;
+
+        max = r[0];
+        for (int i = 1; i < numsSize; i++) {
+            if (r[i] > max)
+            max  = r[i];
+        }
+
+    return max;
+}
+
+int main()
+{
+    int n ;
+    unsigned int a[] = {7,7,7,7};
+    n = sizeof(a) / sizeof(a[0]);
+    n = lengthOfLIS(a, n);
+    printf("%d",  n);
 }
