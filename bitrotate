@@ -1,6 +1,6 @@
 #include <stdio.h>
 // rotates x either to left or to right  count number of times
-unsigned int rotate(unsigned int x, unsigned l, int count)
+unsigned int rotate(unsigned int x, int l, int count)
 {
     unsigned int shift, m;
     while (count--) {
