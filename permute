@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+int swap (char *x, char *y)
+{
+    char t = *x;
+    *x = *y;
+    *y = t;
+    return 0;
+}
+void perm(char *a, int l, int r)
+{
+    if (l == r) {
+        printf("\n%s", a);
+    } else {
+        for (int i = l; i < r; i++) {
+        swap(a+l, a+i);
+        perm(a, l+1, r);
+        swap(a+l, a+i);
+        }
+    }
+}
+int main()
+{
+    int n ;
+    char a[] = "ABCD";
+    n = sizeof(a) / sizeof(a[0]);
+    perm(a, 0, n-1);
+}
