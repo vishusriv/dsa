@@ -1,0 +1,28 @@
+#include <stdio.h>
+int sort01(int a[], int s)
+{
+    int l, r;
+    l = 0;
+    r = s - 1;
+    while(l <= r) {
+        if (a[l] == 0)
+            l++;
+        else if (a[r] == 1)
+            r--;
+        else {
+            int t = a[l];
+            a[l] = a[r];
+            a[r] = t;
+        }    
+    }
+    return 0;
+}
+int main() {
+    int r, s;
+    int a[]= {0,1,1,0,1,1,0}; 
+    s = sizeof(a) / sizeof(a[0]);
+    sort01(a, s);
+    for ( r = 0; r < s; r++)
+        printf("\n %d", a[r]);
+    return 0;
+}
